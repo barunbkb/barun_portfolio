@@ -183,6 +183,11 @@
           line-height: 1.8;
         }
       }
+      .profile-face-img {
+        image-rendering: -webkit-optimize-contrast;
+        transform: translateZ(0) scale(1.24);
+        transform-origin: 50% 20%;
+      }
     </style>
   </head>
   <body class="bg-[#FAFAFA] text-[#475569] selection:bg-[#E8F5E9] selection:text-[#0F5132]">
@@ -194,12 +199,15 @@
           href="#about"
           class="inline-flex items-center gap-2.5 text-lg sm:text-xl font-bold tracking-tight text-[#0F5132] whitespace-nowrap shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0F5132] focus-visible:ring-offset-2 rounded-lg pr-1"
         >
-          <img
-            src="./media_1795247193242_d7736e0c.jpg"
-            alt="বরুণ মল্লিক"
-            referrerPolicy="no-referrer"
-            class="w-9 h-9 rounded-full object-cover object-top border border-slate-300 bg-white shrink-0"
-          />
+          <span class="w-11 h-11 rounded-full overflow-hidden border border-slate-300 bg-white shrink-0 inline-block">
+            <img
+              id="navbar-avatar-img"
+              src="./assets/aistudio/file_00000000827081faa03d578bd9211779_7f8aaf3d.png"
+              alt="বরুণ মল্লিক"
+              referrerPolicy="no-referrer"
+              class="w-full h-full object-cover object-top"
+            />
+          </span>
           <span data-i18n="brandName">বরুণ মল্লিক</span>
         </a>
 
@@ -371,13 +379,15 @@
             <!-- Left Column: Profile Identity, Headline & CTAs -->
             <div class="lg:col-span-7 flex flex-col justify-center">
               <!-- Author Identity Lockup (Photo Beside Name) -->
-              <div class="flex items-center gap-4 mb-6">
-                <img
-                  src="./media_1795247193242_d7736e0c.jpg"
-                  alt="বরুণ মল্লিক"
-                  referrerPolicy="no-referrer"
-                  class="w-16 h-16 sm:w-[72px] sm:h-[72px] rounded-2xl object-cover object-top border border-slate-200 bg-white shadow-sm shrink-0"
-                />
+              <div class="flex items-center gap-4 sm:gap-5 mb-6">
+                <div class="w-24 h-24 sm:w-[116px] sm:h-[116px] rounded-2xl overflow-hidden border border-slate-200 bg-white shadow-sm shrink-0">
+                  <img
+                    src="./assets/aistudio/file_00000000827081faa03d578bd9211779_7f8aaf3d.png"
+                    alt="বরুণ মল্লিক"
+                    referrerPolicy="no-referrer"
+                    class="w-full h-full object-cover object-top profile-face-img"
+                  />
+                </div>
                 <div>
                   <div class="text-xl sm:text-2xl font-bold text-[#1E293B] leading-snug" data-i18n="brandName">
                     বরুণ মল্লিক
@@ -958,12 +968,14 @@
           <header class="pb-6 border-b border-slate-200">
             <h3 id="journal-modal-title" class="text-2xl sm:text-[1.75rem] font-bold text-[#1E293B] leading-[1.4]"></h3>
             <div class="mt-4 flex items-center gap-3">
-              <img
-                src="./media_1795247193242_d7736e0c.jpg"
-                alt="বরুণ মল্লিক"
-                referrerPolicy="no-referrer"
-                class="w-10 h-10 rounded-full object-cover object-top border border-slate-200"
-              />
+              <span class="w-12 h-12 rounded-full overflow-hidden border border-slate-200 bg-white shrink-0 inline-block">
+                <img
+                  src="./assets/aistudio/file_00000000827081faa03d578bd9211779_7f8aaf3d.png"
+                  alt="বরুণ মল্লিক"
+                  referrerPolicy="no-referrer"
+                  class="w-full h-full object-cover object-top profile-face-img"
+                />
+              </span>
               <p class="text-sm text-[#475569]" data-i18n-html="journalAuthorLine">
                 লেখক: <span class="font-semibold text-[#1E293B]">বরুণ মল্লিক</span> · কর্মকর্তা, বাংলাদেশ কৃষি ব্যাংক, বৈঠাকাটা শাখা
               </p>
@@ -2014,7 +2026,73 @@
           showToast(t.formSuccessToast);
         });
 
+        // Crisp Multi-step Face Crop & Downsampling for Top Navigation Avatar
+        function enhanceNavbarAvatar() {
+          const navImg = document.getElementById('navbar-avatar-img');
+          if (!navImg || navImg.dataset.enhanced === '1') return;
+
+          const processAvatar = () => {
+            if (navImg.dataset.enhanced === '1' || !navImg.naturalWidth) return;
+            try {
+              const w = navImg.naturalWidth;
+              const h = navImg.naturalHeight;
+              const cropSize = Math.round(Math.min(w, h) * 0.68);
+              const sx = Math.round((w - cropSize) / 2);
+              const sy = Math.round(h * 0.04);
+
+              const dpr = Math.min(window.devicePixelRatio || 1, 3);
+              const targetSize = Math.max(44, Math.round(44 * dpr));
+
+              let currentCanvas = document.createElement('canvas');
+              let curSize = Math.min(512, cropSize);
+              currentCanvas.width = curSize;
+              currentCanvas.height = curSize;
+              let ctx = currentCanvas.getContext('2d');
+              ctx.imageSmoothingEnabled = true;
+              ctx.imageSmoothingQuality = 'high';
+              ctx.drawImage(navImg, sx, sy, cropSize, cropSize, 0, 0, curSize, curSize);
+
+              while (curSize * 0.5 >= targetSize) {
+                const nextSize = Math.round(curSize * 0.5);
+                const stepCanvas = document.createElement('canvas');
+                stepCanvas.width = nextSize;
+                stepCanvas.height = nextSize;
+                const stepCtx = stepCanvas.getContext('2d');
+                stepCtx.imageSmoothingEnabled = true;
+                stepCtx.imageSmoothingQuality = 'high';
+                stepCtx.drawImage(currentCanvas, 0, 0, curSize, curSize, 0, 0, nextSize, nextSize);
+                currentCanvas = stepCanvas;
+                curSize = nextSize;
+              }
+
+              if (curSize !== targetSize) {
+                const finalCanvas = document.createElement('canvas');
+                finalCanvas.width = targetSize;
+                finalCanvas.height = targetSize;
+                const finalCtx = finalCanvas.getContext('2d');
+                finalCtx.imageSmoothingEnabled = true;
+                finalCtx.imageSmoothingQuality = 'high';
+                finalCtx.drawImage(currentCanvas, 0, 0, curSize, curSize, 0, 0, targetSize, targetSize);
+                currentCanvas = finalCanvas;
+              }
+
+              const crispUrl = currentCanvas.toDataURL('image/png');
+              navImg.dataset.enhanced = '1';
+              navImg.src = crispUrl;
+            } catch (e) {
+              // Fallback gracefully to original image if canvas export is restricted
+            }
+          };
+
+          if (navImg.complete && navImg.naturalWidth > 0) {
+            processAvatar();
+          } else {
+            navImg.addEventListener('load', processAvatar, { once: true });
+          }
+        }
+
         // Initial Render (Default Bangla)
+        enhanceNavbarAvatar();
         setLanguage('bn');
       })();
     </script>
