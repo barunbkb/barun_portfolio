@@ -185,8 +185,8 @@
       }
       .profile-face-img {
         image-rendering: -webkit-optimize-contrast;
-        transform: translateZ(0) scale(1.24);
-        transform-origin: 50% 20%;
+        transform: translateZ(0) scale(1.06);
+        transform-origin: 50% 18%;
       }
     </style>
   </head>
@@ -199,7 +199,7 @@
           href="#about"
           class="inline-flex items-center gap-2.5 text-lg sm:text-xl font-bold tracking-tight text-[#0F5132] whitespace-nowrap shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0F5132] focus-visible:ring-offset-2 rounded-lg pr-1"
         >
-          <span class="w-11 h-11 rounded-full overflow-hidden border border-slate-300 bg-white shrink-0 inline-block">
+          <span class="w-11 h-11 rounded-full overflow-hidden border border-slate-300 ring-2 ring-[#0F5132]/10 bg-white shrink-0 inline-block">
             <img
               id="navbar-avatar-img"
               src="./media_1795247193242_d7736e0c.jpg"
@@ -378,15 +378,18 @@
           <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-stretch">
             <!-- Left Column: Profile Identity, Headline & CTAs -->
             <div class="lg:col-span-7 flex flex-col justify-center">
-              <!-- Author Identity Lockup (Photo Beside Name) -->
+              <!-- Author Identity Lockup (Passport-Size Photo Beside Name) -->
               <div class="flex items-center gap-4 sm:gap-5 mb-6">
-                <div class="w-24 h-24 sm:w-[116px] sm:h-[116px] rounded-2xl overflow-hidden border border-slate-200 bg-white shadow-sm shrink-0">
-                  <img
-                    src="./media_1795247193242_d7736e0c.jpg"
-                    alt="বরুণ মল্লিক"
-                    referrerPolicy="no-referrer"
-                    class="w-full h-full object-cover object-top profile-face-img"
-                  />
+                <div class="p-1 bg-white border border-slate-200/90 rounded-xl shadow-sm shrink-0">
+                  <div class="w-[108px] h-[136px] sm:w-[128px] sm:h-[160px] rounded-lg overflow-hidden bg-slate-50">
+                    <img
+                      id="hero-portrait-img"
+                      src="./media_1795247193242_d7736e0c.jpg"
+                      alt="বরুণ মল্লিক"
+                      referrerPolicy="no-referrer"
+                      class="w-full h-full object-cover object-top"
+                    />
+                  </div>
                 </div>
                 <div>
                   <div class="text-xl sm:text-2xl font-bold text-[#1E293B] leading-snug" data-i18n="brandName">
@@ -970,10 +973,11 @@
             <div class="mt-4 flex items-center gap-3">
               <span class="w-12 h-12 rounded-full overflow-hidden border border-slate-200 bg-white shrink-0 inline-block">
                 <img
+                  id="modal-avatar-img"
                   src="./media_1795247193242_d7736e0c.jpg"
                   alt="বরুণ মল্লিক"
                   referrerPolicy="no-referrer"
-                  class="w-full h-full object-cover object-top profile-face-img"
+                  class="w-full h-full object-cover object-top"
                 />
               </span>
               <p class="text-sm text-[#475569]" data-i18n-html="journalAuthorLine">
@@ -2026,73 +2030,155 @@
           showToast(t.formSuccessToast);
         });
 
-        // Crisp Multi-step Face Crop & Downsampling for Top Navigation Avatar
-        function enhanceNavbarAvatar() {
-          const navImg = document.getElementById('navbar-avatar-img');
-          if (!navImg || navImg.dataset.enhanced === '1') return;
+        // Gentle 3x3 Unsharp Filter (weights sum to 1.0 so white backgrounds stay pure white)
+        function applyGentleSharpen(ctx, width, height, amount) {
+          const imgData = ctx.getImageData(0, 0, width, height);
+          const src = imgData.data;
+          const out = new Uint8ClampedArray(src.length);
+          const centerW = 1 + 4 * amount;
+          const sideW = -amount;
 
-          const processAvatar = () => {
-            if (navImg.dataset.enhanced === '1' || !navImg.naturalWidth) return;
+          for (let y = 0; y < height; y++) {
+            for (let x = 0; x < width; x++) {
+              const idx = (y * width + x) * 4;
+              if (x === 0 || y === 0 || x === width - 1 || y === height - 1) {
+                out[idx] = src[idx];
+                out[idx + 1] = src[idx + 1];
+                out[idx + 2] = src[idx + 2];
+                out[idx + 3] = src[idx + 3];
+                continue;
+              }
+              const up = ((y - 1) * width + x) * 4;
+              const down = ((y + 1) * width + x) * 4;
+              const left = (y * width + (x - 1)) * 4;
+              const right = (y * width + (x + 1)) * 4;
+
+              for (let c = 0; c < 3; c++) {
+                const val =
+                  src[idx + c] * centerW +
+                  (src[up + c] + src[down + c] + src[left + c] + src[right + c]) * sideW;
+                out[idx + c] = val < 0 ? 0 : val > 255 ? 255 : Math.round(val);
+              }
+              out[idx + 3] = src[idx + 3];
+            }
+          }
+
+          imgData.data.set(out);
+          ctx.putImageData(imgData, 0, 0);
+        }
+
+        // Crisp Multi-step Downsampling & Sharpening for Portraits
+        function enhancePortrait(imgId, options) {
+          const img = document.getElementById(imgId);
+          if (!img || img.dataset.enhanced === '1') return;
+
+          const process = () => {
+            if (img.dataset.enhanced === '1' || !img.naturalWidth) return;
             try {
-              const w = navImg.naturalWidth;
-              const h = navImg.naturalHeight;
-              const cropSize = Math.round(Math.min(w, h) * 0.94);
-              const sx = Math.round((w - cropSize) / 2);
-              const sy = Math.round(h * 0.01);
-
+              const nw = img.naturalWidth;
+              const nh = img.naturalHeight;
               const dpr = Math.min(window.devicePixelRatio || 1, 3);
-              const targetSize = Math.max(44, Math.round(44 * dpr));
+              const targetW = Math.max(options.cssW, Math.round(options.cssW * dpr));
+              const targetH = Math.max(options.cssH, Math.round(options.cssH * dpr));
 
+              let sx = 0;
+              let sy = 0;
+              let sw = nw;
+              let sh = nh;
+
+              const targetRatio = targetW / targetH;
+              if (options.cropWidthRatio) {
+                sw = Math.round(nw * options.cropWidthRatio);
+                sh = Math.min(nh, Math.round(sw / targetRatio));
+                sx = Math.round((nw - sw) / 2);
+                sy = Math.min(nh - sh, Math.round(nh * (options.topOffsetRatio || 0)));
+              } else {
+                const naturalRatio = nw / nh;
+                if (naturalRatio > targetRatio) {
+                  sh = nh;
+                  sw = Math.round(nh * targetRatio);
+                  sx = Math.round((nw - sw) / 2);
+                } else {
+                  sw = nw;
+                  sh = Math.round(nw / targetRatio);
+                  sy = 0;
+                }
+              }
+
+              let curW = Math.min(560, sw);
+              let curH = Math.round(curW / targetRatio);
               let currentCanvas = document.createElement('canvas');
-              let curSize = Math.min(512, cropSize);
-              currentCanvas.width = curSize;
-              currentCanvas.height = curSize;
+              currentCanvas.width = curW;
+              currentCanvas.height = curH;
               let ctx = currentCanvas.getContext('2d');
               ctx.imageSmoothingEnabled = true;
               ctx.imageSmoothingQuality = 'high';
-              ctx.drawImage(navImg, sx, sy, cropSize, cropSize, 0, 0, curSize, curSize);
+              ctx.drawImage(img, sx, sy, sw, sh, 0, 0, curW, curH);
 
-              while (curSize * 0.5 >= targetSize) {
-                const nextSize = Math.round(curSize * 0.5);
+              while (curW * 0.5 >= targetW) {
+                const nextW = Math.round(curW * 0.5);
+                const nextH = Math.round(curH * 0.5);
                 const stepCanvas = document.createElement('canvas');
-                stepCanvas.width = nextSize;
-                stepCanvas.height = nextSize;
+                stepCanvas.width = nextW;
+                stepCanvas.height = nextH;
                 const stepCtx = stepCanvas.getContext('2d');
                 stepCtx.imageSmoothingEnabled = true;
                 stepCtx.imageSmoothingQuality = 'high';
-                stepCtx.drawImage(currentCanvas, 0, 0, curSize, curSize, 0, 0, nextSize, nextSize);
+                stepCtx.drawImage(currentCanvas, 0, 0, curW, curH, 0, 0, nextW, nextH);
                 currentCanvas = stepCanvas;
-                curSize = nextSize;
+                curW = nextW;
+                curH = nextH;
               }
 
-              if (curSize !== targetSize) {
+              if (curW !== targetW || curH !== targetH) {
                 const finalCanvas = document.createElement('canvas');
-                finalCanvas.width = targetSize;
-                finalCanvas.height = targetSize;
+                finalCanvas.width = targetW;
+                finalCanvas.height = targetH;
                 const finalCtx = finalCanvas.getContext('2d');
                 finalCtx.imageSmoothingEnabled = true;
                 finalCtx.imageSmoothingQuality = 'high';
-                finalCtx.drawImage(currentCanvas, 0, 0, curSize, curSize, 0, 0, targetSize, targetSize);
+                finalCtx.drawImage(currentCanvas, 0, 0, curW, curH, 0, 0, targetW, targetH);
                 currentCanvas = finalCanvas;
               }
 
+              const finalCtx = currentCanvas.getContext('2d');
+              applyGentleSharpen(finalCtx, targetW, targetH, options.sharpen || 0.22);
+
               const crispUrl = currentCanvas.toDataURL('image/png');
-              navImg.dataset.enhanced = '1';
-              navImg.src = crispUrl;
+              img.dataset.enhanced = '1';
+              img.src = crispUrl;
             } catch (e) {
               // Fallback gracefully to original image if canvas export is restricted
             }
           };
 
-          if (navImg.complete && navImg.naturalWidth > 0) {
-            processAvatar();
+          if (img.complete && img.naturalWidth > 0) {
+            process();
           } else {
-            navImg.addEventListener('load', processAvatar, { once: true });
+            img.addEventListener('load', process, { once: true });
           }
         }
 
         // Initial Render (Default Bangla)
-        enhanceNavbarAvatar();
+        enhancePortrait('navbar-avatar-img', {
+          cssW: 44,
+          cssH: 44,
+          cropWidthRatio: 0.86,
+          topOffsetRatio: 0.02,
+          sharpen: 0.28,
+        });
+        enhancePortrait('hero-portrait-img', {
+          cssW: 128,
+          cssH: 160,
+          sharpen: 0.2,
+        });
+        enhancePortrait('modal-avatar-img', {
+          cssW: 48,
+          cssH: 48,
+          cropWidthRatio: 0.86,
+          topOffsetRatio: 0.02,
+          sharpen: 0.26,
+        });
         setLanguage('bn');
       })();
     </script>
