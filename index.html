@@ -65,12 +65,50 @@
         --border-hairline: #e2e8f0;
       }
 
+      html {
+        font-size: 16px;
+      }
+
+      @media (min-width: 1024px) {
+        html {
+          font-size: 17px;
+        }
+      }
+
+      @media (min-width: 1440px) {
+        html {
+          font-size: 18.5px;
+        }
+      }
+
+      @media (min-width: 1920px) {
+        html {
+          font-size: 20px;
+        }
+      }
+
+      html[lang='en'] {
+        font-size: 16px;
+      }
+
+      @media (min-width: 1440px) {
+        html[lang='en'] {
+          font-size: 17px;
+        }
+      }
+
+      @media (min-width: 1920px) {
+        html[lang='en'] {
+          font-size: 18px;
+        }
+      }
+
       html,
       body {
         font-family: 'Kalpurush', 'Noto Sans Bengali', system-ui, -apple-system, sans-serif;
         background-color: var(--bg-canvas);
         color: var(--text-body);
-        line-height: 1.75;
+        line-height: 1.78;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
       }
@@ -193,7 +231,7 @@
   <body class="bg-[#FAFAFA] text-[#475569] selection:bg-[#E8F5E9] selection:text-[#0F5132]">
     <!-- Sticky Top Bar -->
     <header class="sticky top-0 z-40 bg-[#FAFAFA]/95 backdrop-blur-sm border-b border-slate-200/80">
-      <div class="max-w-6xl mx-auto px-5 sm:px-8 h-[68px] flex items-center justify-between gap-4 lg:gap-8">
+      <div class="max-w-7xl mx-auto px-5 sm:px-8 h-[4.5rem] flex items-center justify-between gap-4 lg:gap-6">
         <!-- Zone 1: Brand Wordmark with Photo Beside Name -->
         <a
           href="#about"
@@ -213,7 +251,7 @@
 
         <!-- Zone 2: Concise Single-line Navigation Links -->
         <nav
-          class="hidden lg:flex items-center gap-6 text-[15px] font-medium text-[#475569]"
+          class="hidden lg:flex items-center gap-5 xl:gap-7 text-[0.95rem] font-medium text-[#475569]"
           aria-label="প্রধান নেভিগেশন"
         >
           <a
@@ -265,7 +303,7 @@
               type="button"
               data-lang-btn="bn"
               aria-pressed="true"
-              class="lang-switch-btn px-2.5 py-1 text-xs font-semibold rounded-md bg-white text-[#0F5132] shadow-sm transition-colors whitespace-nowrap shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0F5132]"
+              class="lang-switch-btn px-2.5 py-1 text-xs sm:text-sm font-semibold rounded-md bg-white text-[#0F5132] shadow-sm transition-colors whitespace-nowrap shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0F5132]"
             >
               বাংলা
             </button>
@@ -273,7 +311,7 @@
               type="button"
               data-lang-btn="en"
               aria-pressed="false"
-              class="lang-switch-btn px-2.5 py-1 text-xs font-medium rounded-md text-[#475569] hover:text-[#1E293B] transition-colors whitespace-nowrap shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0F5132]"
+              class="lang-switch-btn px-2.5 py-1 text-xs sm:text-sm font-medium rounded-md text-[#475569] hover:text-[#1E293B] transition-colors whitespace-nowrap shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0F5132]"
             >
               English
             </button>
@@ -374,7 +412,7 @@
     <main>
       <!-- Section 1: Hero Section -->
       <section id="about" class="pt-10 pb-16 sm:pt-14 sm:pb-20 lg:pt-16 lg:pb-24">
-        <div class="max-w-6xl mx-auto px-5 sm:px-8">
+        <div class="max-w-7xl mx-auto px-5 sm:px-8">
           <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-stretch">
             <!-- Left Column: Profile Identity, Headline & CTAs -->
             <div class="lg:col-span-7 flex flex-col justify-center">
@@ -392,13 +430,13 @@
                   </div>
                 </div>
                 <div>
-                  <div class="text-xl sm:text-2xl font-bold text-[#1E293B] leading-snug" data-i18n="brandName">
+                  <div class="text-2xl sm:text-[1.75rem] font-bold text-[#1E293B] leading-snug" data-i18n="brandName">
                     বরুণ মল্লিক
                   </div>
-                  <div class="mt-1">
+                  <div class="mt-1.5">
                     <span
                       data-i18n="heroBadge"
-                      class="inline-block px-3 py-1 bg-[#E8F5E9] text-[#0F5132] text-xs sm:text-sm font-semibold rounded-md tracking-wide"
+                      class="inline-block px-3.5 py-1.5 bg-[#E8F5E9] text-[#0F5132] text-sm font-semibold rounded-md tracking-wide"
                     >
                       কর্মকর্তা, বাংলাদেশ কৃষি ব্যাংক · বৈঠাকাটা শাখা, নাজিরপুর, পিরোজপুর
                     </span>
@@ -408,14 +446,14 @@
 
               <h1
                 data-i18n="heroHeadline"
-                class="text-[1.95rem] sm:text-[2.55rem] lg:text-[3rem] font-bold text-[#1E293B] leading-[1.32] tracking-tight mb-5 max-w-2xl"
+                class="text-[2rem] sm:text-[2.6rem] lg:text-[2.85rem] font-bold text-[#1E293B] leading-[1.32] tracking-tight mb-5 max-w-3xl"
               >
                 প্রযুক্তি ও অটোমেশনের মাধ্যমে কৃষি ব্যাংকিংয়ে আধুনিক রূপান্তর
               </h1>
 
               <p
                 data-i18n-html="heroBio"
-                class="text-base sm:text-[17px] text-[#475569] leading-[1.8] max-w-2xl mb-8"
+                class="text-base sm:text-[1.08rem] text-[#475569] leading-[1.82] max-w-2xl mb-8"
               >
                 আমি গোপালগঞ্জ বিজ্ঞান ও প্রযুক্তি বিশ্ববিদ্যালয় থেকে <span class="text-[#1E293B] font-semibold">কম্পিউটার সায়েন্স অ্যান্ড ইঞ্জিনিয়ারিং (CSE)</span>-এ পড়াশোনা করেছি এবং গত <span class="text-[#1E293B] font-semibold">৭ বছর ধরে ব্যাংকে</span> কর্মরত আছি। দৈনন্দিন ব্যাংকিং কার্যক্রম সহজ করতে <span class="text-[#1E293B] font-semibold">ওয়েব ডেভেলপমেন্ট</span>, <span class="text-[#1E293B] font-semibold">ডাটা অটোমেশন</span>, <span class="text-[#1E293B] font-semibold">অ্যাডভান্সড এক্সেল (VBA)</span> এবং <span class="text-[#1E293B] font-semibold">অ্যান্ড্রয়েড অ্যাপ ডেভেলপমেন্ট</span> নিয়ে কাজ করছি।
               </p>
@@ -423,7 +461,7 @@
               <div class="flex flex-wrap items-center gap-4">
                 <a
                   href="#projects"
-                  class="inline-flex items-center justify-center gap-2 px-6 py-3 text-[15px] font-semibold text-white bg-[#0F5132] hover:bg-[#146C43] rounded-lg transition-colors duration-150 whitespace-nowrap shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0F5132] focus-visible:ring-offset-2"
+                  class="inline-flex items-center justify-center gap-2 px-6 py-3 text-base font-semibold text-white bg-[#0F5132] hover:bg-[#146C43] rounded-lg transition-colors duration-150 whitespace-nowrap shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0F5132] focus-visible:ring-offset-2"
                 >
                   <span data-i18n="ctaProjects">প্রজেক্টসমূহ দেখুন</span>
                   <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -434,7 +472,7 @@
                 <a
                   href="#journals"
                   data-i18n="ctaJournals"
-                  class="inline-flex items-center justify-center gap-2 px-6 py-3 text-[15px] font-semibold text-[#1E293B] bg-white border border-slate-300 hover:border-[#0F5132] hover:text-[#0F5132] rounded-lg transition-colors duration-150 whitespace-nowrap shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0F5132] focus-visible:ring-offset-2"
+                  class="inline-flex items-center justify-center gap-2 px-6 py-3 text-base font-semibold text-[#1E293B] bg-white border border-slate-300 hover:border-[#0F5132] hover:text-[#0F5132] rounded-lg transition-colors duration-150 whitespace-nowrap shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0F5132] focus-visible:ring-offset-2"
                 >
                   জার্নাল পড়ুন
                 </a>
@@ -446,7 +484,7 @@
               <div
                 class="w-full bg-white border border-slate-200 rounded-2xl p-6 sm:p-7 flex flex-col justify-between"
               >
-                <div class="flex items-center justify-between text-xs text-slate-500 pb-4 border-b border-slate-100">
+                <div class="flex items-center justify-between text-sm text-slate-500 pb-4 border-b border-slate-100">
                   <span class="font-semibold text-[#0F5132]" data-i18n="heroCardTag">ব্যাংকিং অটোমেশন ও ফিনটেক</span>
                   <span class="font-mono tabular-nums" data-i18n="heroCardLoc">নাজিরপুর, পিরোজপুর</span>
                 </div>
@@ -518,20 +556,20 @@
                 </div>
 
                 <!-- Education & Experience Summary -->
-                <div class="pt-4 border-t border-slate-100 space-y-3 text-sm">
+                <div class="pt-4 border-t border-slate-100 space-y-3 text-base">
                   <div>
-                    <div class="text-xs text-slate-500" data-i18n="eduLabel">শিক্ষাগত যোগ্যতা</div>
-                    <div class="font-semibold text-[#1E293B] mt-0.5" data-i18n="eduValue">
+                    <div class="text-sm text-slate-500" data-i18n="eduLabel">শিক্ষাগত যোগ্যতা</div>
+                    <div class="font-semibold text-[#1E293B] mt-0.5 leading-snug" data-i18n="eduValue">
                       কম্পিউটার সায়েন্স অ্যান্ড ইঞ্জিনিয়ারিং (CSE) · গোপালগঞ্জ বিজ্ঞান ও প্রযুক্তি বিশ্ববিদ্যালয়
                     </div>
                   </div>
                   <div class="grid grid-cols-2 gap-4 pt-2 border-t border-slate-100">
                     <div>
-                      <div class="text-xs text-slate-500" data-i18n="expLabel">কর্মঅভিজ্ঞতা</div>
+                      <div class="text-sm text-slate-500" data-i18n="expLabel">কর্মঅভিজ্ঞতা</div>
                       <div class="font-semibold text-[#1E293B] mt-0.5" data-i18n="expValue">৭ বছর (ব্যাংকিং)</div>
                     </div>
                     <div>
-                      <div class="text-xs text-slate-500" data-i18n="focusLabel">মূল ক্ষেত্র</div>
+                      <div class="text-sm text-slate-500" data-i18n="focusLabel">মূল ক্ষেত্র</div>
                       <div class="font-semibold text-[#1E293B] mt-0.5" data-i18n="focusValue">ডাটা অটোমেশন · ফিনটেক</div>
                     </div>
                   </div>
@@ -544,19 +582,19 @@
           <div class="mt-12 pt-9 border-t border-slate-200/90 grid grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
             <div>
               <div class="text-2xl sm:text-3xl font-bold text-[#0F5132] tabular-nums" data-i18n="stat1Num">৭ বছর</div>
-              <div class="text-sm text-[#475569] mt-1" data-i18n="stat1Text">ব্যাংকিং অপারেশন ও শাখা অভিজ্ঞতা</div>
+              <div class="text-sm sm:text-base text-[#475569] mt-1" data-i18n="stat1Text">ব্যাংকিং অপারেশন ও শাখা অভিজ্ঞতা</div>
             </div>
             <div>
               <div class="text-2xl sm:text-3xl font-bold text-[#0F5132] tabular-nums" data-i18n="stat2Num">১২+ টুলস</div>
-              <div class="text-sm text-[#475569] mt-1" data-i18n="stat2Text">অভ্যন্তরীণ এক্সেল ও ওয়েব সমাধান</div>
+              <div class="text-sm sm:text-base text-[#475569] mt-1" data-i18n="stat2Text">অভ্যন্তরীণ এক্সেল ও ওয়েব সমাধান</div>
             </div>
             <div>
               <div class="text-2xl sm:text-3xl font-bold text-[#0F5132] tabular-nums" data-i18n="stat3Num">৬৫% সাশ্রয়</div>
-              <div class="text-sm text-[#475569] mt-1" data-i18n="stat3Text">দৈনিক বিবরণী ও হিসাব সমন্বয়ে</div>
+              <div class="text-sm sm:text-base text-[#475569] mt-1" data-i18n="stat3Text">দৈনিক বিবরণী ও হিসাব সমন্বয়ে</div>
             </div>
             <div>
               <div class="text-2xl sm:text-3xl font-bold text-[#0F5132] tabular-nums" data-i18n="stat4Num">৪টি প্রকাশনা</div>
-              <div class="text-sm text-[#475569] mt-1" data-i18n="stat4Text">কৃষি ঋণ ও ডিজিটাল ব্যাংকিং জার্নাল</div>
+              <div class="text-sm sm:text-base text-[#475569] mt-1" data-i18n="stat4Text">কৃষি ঋণ ও ডিজিটাল ব্যাংকিং জার্নাল</div>
             </div>
           </div>
         </div>
@@ -564,13 +602,13 @@
 
       <!-- Section 2: Skills & Core Competencies -->
       <section id="skills" class="py-16 sm:py-20 bg-white border-y border-slate-200/80">
-        <div class="max-w-6xl mx-auto px-5 sm:px-8">
+        <div class="max-w-7xl mx-auto px-5 sm:px-8">
           <div class="max-w-2xl mb-12">
-            <p class="text-sm font-semibold text-[#0F5132] mb-2" data-i18n="skillsKicker">কারিগরি সক্ষমতা</p>
-            <h2 class="text-2xl sm:text-3xl font-bold text-[#1E293B] leading-[1.35]" data-i18n="skillsHeading">
+            <p class="text-sm sm:text-base font-semibold text-[#0F5132] mb-2" data-i18n="skillsKicker">কারিগরি সক্ষমতা</p>
+            <h2 class="text-[1.75rem] sm:text-[2.15rem] font-bold text-[#1E293B] leading-[1.35]" data-i18n="skillsHeading">
               দক্ষতা ও প্রযুক্তি
             </h2>
-            <p class="text-[#475569] mt-3 text-base leading-[1.75]" data-i18n="skillsSubtitle">
+            <p class="text-[#475569] mt-3 text-base sm:text-[1.0625rem] leading-[1.78]" data-i18n="skillsSubtitle">
               কম্পিউটার সায়েন্সের জ্ঞান এবং ৭ বছরের ব্যাংকিং অভিজ্ঞতার সমন্বয়ে দাপ্তরিক কর্মপ্রবাহকে আরও দ্রুত ও নির্ভুল করতে যে প্রযুক্তিগুলোতে নিয়মিত কাজ করছি।
             </p>
           </div>
@@ -581,14 +619,14 @@
 
       <!-- Section 3: Banking Projects Showcase -->
       <section id="projects" class="py-16 sm:py-20">
-        <div class="max-w-6xl mx-auto px-5 sm:px-8">
+        <div class="max-w-7xl mx-auto px-5 sm:px-8">
           <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
             <div class="max-w-xl">
-              <p class="text-sm font-semibold text-[#0F5132] mb-2" data-i18n="projectsKicker">বাস্তবসম্মত সমাধান</p>
-              <h2 class="text-2xl sm:text-3xl font-bold text-[#1E293B] leading-[1.35]" data-i18n="projectsHeading">
+              <p class="text-sm sm:text-base font-semibold text-[#0F5132] mb-2" data-i18n="projectsKicker">বাস্তবসম্মত সমাধান</p>
+              <h2 class="text-[1.75rem] sm:text-[2.15rem] font-bold text-[#1E293B] leading-[1.35]" data-i18n="projectsHeading">
                 ব্যাংকিং প্রজেক্টসমূহ
               </h2>
-              <p class="text-[#475569] mt-2 text-base leading-[1.75]" data-i18n="projectsSubtitle">
+              <p class="text-[#475569] mt-2 text-base sm:text-[1.0625rem] leading-[1.78]" data-i18n="projectsSubtitle">
                 শাখা পর্যায়ের হিসাবরক্ষণ, ঋণ ব্যবস্থাপনা ও গ্রাহকসেবা সহজ করতে নির্মিত উল্লেখযোগ্য টুলস ও অ্যাপ্লিকেশন।
               </p>
             </div>
@@ -649,13 +687,13 @@
 
       <!-- Section 4: Banking Journals & Publications -->
       <section id="journals" class="py-16 sm:py-20 bg-white border-y border-slate-200/80">
-        <div class="max-w-6xl mx-auto px-5 sm:px-8">
+        <div class="max-w-7xl mx-auto px-5 sm:px-8">
           <div class="max-w-2xl mb-10">
-            <p class="text-sm font-semibold text-[#0F5132] mb-2" data-i18n="journalsKicker">চিন্তা ও গবেষণা</p>
-            <h2 class="text-2xl sm:text-3xl font-bold text-[#1E293B] leading-[1.35]" data-i18n="journalsHeading">
+            <p class="text-sm sm:text-base font-semibold text-[#0F5132] mb-2" data-i18n="journalsKicker">চিন্তা ও গবেষণা</p>
+            <h2 class="text-[1.75rem] sm:text-[2.15rem] font-bold text-[#1E293B] leading-[1.35]" data-i18n="journalsHeading">
               জার্নাল ও গবেষণাপত্র
             </h2>
-            <p class="text-[#475569] mt-2 text-base leading-[1.75]" data-i18n="journalsSubtitle">
+            <p class="text-[#475569] mt-2 text-base sm:text-[1.0625rem] leading-[1.78]" data-i18n="journalsSubtitle">
               ডিজিটাল ব্যাংকিং, গ্রামীণ কৃষি অর্থনীতি এবং শাখা পর্যায়ের অটোমেশন নিয়ে প্রকাশিত নিবন্ধ ও বিশ্লেষণ।
             </p>
           </div>
@@ -669,39 +707,39 @@
 
       <!-- Section 5: Contact & Collaboration -->
       <section id="contact" class="py-16 sm:py-20">
-        <div class="max-w-6xl mx-auto px-5 sm:px-8">
+        <div class="max-w-7xl mx-auto px-5 sm:px-8">
           <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-start">
             <!-- Left Column: Invitation & Info -->
             <div class="lg:col-span-5">
-              <p class="text-sm font-semibold text-[#0F5132] mb-2" data-i18n="contactKicker">সহযোগিতা ও মতামত</p>
-              <h2 class="text-2xl sm:text-3xl font-bold text-[#1E293B] leading-[1.35] mb-4" data-i18n="contactHeading">
+              <p class="text-sm sm:text-base font-semibold text-[#0F5132] mb-2" data-i18n="contactKicker">সহযোগিতা ও মতামত</p>
+              <h2 class="text-[1.75rem] sm:text-[2.15rem] font-bold text-[#1E293B] leading-[1.35] mb-4" data-i18n="contactHeading">
                 যোগাযোগ ও মতামত
               </h2>
-              <p class="text-[#475569] leading-[1.8] mb-8" data-i18n="contactSubtitle">
+              <p class="text-base sm:text-[1.0625rem] text-[#475569] leading-[1.8] mb-8" data-i18n="contactSubtitle">
                 ব্যাংকিং অটোমেশন টুলস, কৃষি অর্থায়ন বিষয়ক যৌথ গবেষণা, কিংবা প্রযুক্তিগত কোনো বিষয়ে আলোচনা করতে চাইলে নিচের ফর্মের মাধ্যমে যোগাযোগ করতে পারেন। ব্যাংকার, গবেষক ও ডেভেলপারদের যেকোনো গঠনমূলক মতামত সাদরে গৃহীত হবে।
               </p>
 
               <div class="space-y-5 pt-6 border-t border-slate-200">
                 <div>
-                  <div class="text-xs font-semibold text-slate-500" data-i18n="infoWorkplaceLabel">কর্মক্ষেত্র ও অভিজ্ঞতা</div>
-                  <div class="text-[15px] font-semibold text-[#1E293B] mt-0.5" data-i18n="infoWorkplaceValue">
+                  <div class="text-sm font-semibold text-slate-500" data-i18n="infoWorkplaceLabel">কর্মক্ষেত্র ও অভিজ্ঞতা</div>
+                  <div class="text-base font-semibold text-[#1E293B] mt-0.5" data-i18n="infoWorkplaceValue">
                     বাংলাদেশ কৃষি ব্যাংক, বৈঠাকাটা শাখা, নাজিরপুর, পিরোজপুর (৭ বছর)
                   </div>
                 </div>
 
                 <div>
-                  <div class="text-xs font-semibold text-slate-500" data-i18n="infoEduLabel">শিক্ষাগত যোগ্যতা</div>
-                  <div class="text-[15px] font-semibold text-[#1E293B] mt-0.5" data-i18n="infoEduValue">
+                  <div class="text-sm font-semibold text-slate-500" data-i18n="infoEduLabel">শিক্ষাগত যোগ্যতা</div>
+                  <div class="text-base font-semibold text-[#1E293B] mt-0.5" data-i18n="infoEduValue">
                     কম্পিউটার সায়েন্স অ্যান্ড ইঞ্জিনিয়ারিং, গোপালগঞ্জ বিজ্ঞান ও প্রযুক্তি বিশ্ববিদ্যালয়
                   </div>
                 </div>
 
                 <div>
-                  <div class="text-xs font-semibold text-slate-500" data-i18n="infoEmailLabel">ইমেইল ঠিকানা</div>
+                  <div class="text-sm font-semibold text-slate-500" data-i18n="infoEmailLabel">ইমেইল ঠিকানা</div>
                   <div class="flex items-center gap-3 mt-1">
                     <a
                       href="mailto:borunbd49@gmail.com"
-                      class="text-[15px] font-mono text-[#0F5132] hover:underline"
+                      class="text-base font-mono text-[#0F5132] hover:underline"
                     >
                       borunbd49@gmail.com
                     </a>
@@ -709,7 +747,7 @@
                       id="copy-email-btn"
                       type="button"
                       data-i18n="copyBtn"
-                      class="px-2.5 py-1 text-xs font-semibold text-[#0F5132] bg-[#E8F5E9] hover:bg-[#d7eed9] rounded-md transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0F5132]"
+                      class="px-3 py-1 text-sm font-semibold text-[#0F5132] bg-[#E8F5E9] hover:bg-[#d7eed9] rounded-md transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0F5132]"
                     >
                       কপি করুন
                     </button>
@@ -727,7 +765,7 @@
               >
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
                   <div>
-                    <label for="contact-name" class="block text-sm font-semibold text-[#1E293B] mb-1.5">
+                    <label for="contact-name" class="block text-base font-semibold text-[#1E293B] mb-1.5">
                       <span data-i18n="formNameLabel">আপনার নাম</span> <span class="text-[#0F5132]">*</span>
                     </label>
                     <input
@@ -736,12 +774,12 @@
                       type="text"
                       required
                       placeholder="যেমন: মো. রাশেদুল ইসলাম"
-                      class="w-full px-4 py-2.5 text-[15px] text-[#1E293B] bg-[#FAFAFA] border border-slate-300 rounded-lg focus:outline-none focus:border-[#0F5132] focus:bg-white focus:ring-2 focus:ring-[#0F5132]/15 transition-colors"
+                      class="w-full px-4 py-2.5 text-base text-[#1E293B] bg-[#FAFAFA] border border-slate-300 rounded-lg focus:outline-none focus:border-[#0F5132] focus:bg-white focus:ring-2 focus:ring-[#0F5132]/15 transition-colors"
                     />
                   </div>
 
                   <div>
-                    <label for="contact-email" class="block text-sm font-semibold text-[#1E293B] mb-1.5">
+                    <label for="contact-email" class="block text-base font-semibold text-[#1E293B] mb-1.5">
                       <span data-i18n="formEmailLabel">ইমেইল ঠিকানা</span> <span class="text-[#0F5132]">*</span>
                     </label>
                     <input
@@ -750,13 +788,13 @@
                       type="email"
                       required
                       placeholder="name@domain.com"
-                      class="w-full px-4 py-2.5 text-[15px] text-[#1E293B] bg-[#FAFAFA] border border-slate-300 rounded-lg focus:outline-none focus:border-[#0F5132] focus:bg-white focus:ring-2 focus:ring-[#0F5132]/15 transition-colors"
+                      class="w-full px-4 py-2.5 text-base text-[#1E293B] bg-[#FAFAFA] border border-slate-300 rounded-lg focus:outline-none focus:border-[#0F5132] focus:bg-white focus:ring-2 focus:ring-[#0F5132]/15 transition-colors"
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label for="contact-subject" class="block text-sm font-semibold text-[#1E293B] mb-1.5">
+                  <label for="contact-subject" class="block text-base font-semibold text-[#1E293B] mb-1.5">
                     <span data-i18n="formSubjectLabel">বিষয়</span> <span class="text-[#0F5132]">*</span>
                   </label>
                   <input
@@ -765,12 +803,12 @@
                     type="text"
                     required
                     placeholder="যেমন: ব্যাংকিং এক্সেল অটোমেশন বা যৌথ গবেষণা প্রসঙ্গে"
-                    class="w-full px-4 py-2.5 text-[15px] text-[#1E293B] bg-[#FAFAFA] border border-slate-300 rounded-lg focus:outline-none focus:border-[#0F5132] focus:bg-white focus:ring-2 focus:ring-[#0F5132]/15 transition-colors"
+                    class="w-full px-4 py-2.5 text-base text-[#1E293B] bg-[#FAFAFA] border border-slate-300 rounded-lg focus:outline-none focus:border-[#0F5132] focus:bg-white focus:ring-2 focus:ring-[#0F5132]/15 transition-colors"
                   />
                 </div>
 
                 <div>
-                  <label for="contact-message" class="block text-sm font-semibold text-[#1E293B] mb-1.5">
+                  <label for="contact-message" class="block text-base font-semibold text-[#1E293B] mb-1.5">
                     <span data-i18n="formMessageLabel">আপনার বার্তা</span> <span class="text-[#0F5132]">*</span>
                   </label>
                   <textarea
@@ -779,15 +817,15 @@
                     rows="4"
                     required
                     placeholder="আপনার মতামত, প্রশ্ন বা প্রজেক্ট সংক্রান্ত বিস্তারিত লিখুন..."
-                    class="w-full px-4 py-2.5 text-[15px] text-[#1E293B] bg-[#FAFAFA] border border-slate-300 rounded-lg focus:outline-none focus:border-[#0F5132] focus:bg-white focus:ring-2 focus:ring-[#0F5132]/15 transition-colors resize-y"
+                    class="w-full px-4 py-2.5 text-base text-[#1E293B] bg-[#FAFAFA] border border-slate-300 rounded-lg focus:outline-none focus:border-[#0F5132] focus:bg-white focus:ring-2 focus:ring-[#0F5132]/15 transition-colors resize-y"
                   ></textarea>
                 </div>
 
                 <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-2">
-                  <p id="form-error-msg" class="text-sm text-rose-700 hidden" role="alert"></p>
+                  <p id="form-error-msg" class="text-sm sm:text-base text-rose-700 hidden" role="alert"></p>
                   <button
                     type="submit"
-                    class="sm:ml-auto inline-flex items-center justify-center gap-2 px-6 py-3 text-[15px] font-semibold text-white bg-[#0F5132] hover:bg-[#146C43] rounded-lg transition-colors duration-150 whitespace-nowrap shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0F5132] focus-visible:ring-offset-2"
+                    class="sm:ml-auto inline-flex items-center justify-center gap-2 px-6 py-3 text-base font-semibold text-white bg-[#0F5132] hover:bg-[#146C43] rounded-lg transition-colors duration-150 whitespace-nowrap shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0F5132] focus-visible:ring-offset-2"
                   >
                     <span data-i18n="formSubmit">বার্তা পাঠান</span>
                     <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -804,12 +842,12 @@
 
     <!-- Minimalist Footer -->
     <footer class="bg-white border-t border-slate-200 py-10">
-      <div class="max-w-6xl mx-auto px-5 sm:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
-        <div class="text-sm text-[#475569] text-center md:text-left" data-i18n-html="footerCopy">
+      <div class="max-w-7xl mx-auto px-5 sm:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
+        <div class="text-sm sm:text-base text-[#475569] text-center md:text-left" data-i18n-html="footerCopy">
           © ২০২৬ <span class="font-semibold text-[#1E293B]">বরুণ মল্লিক</span> · সর্বস্বত্ব সংরক্ষিত
         </div>
 
-        <nav class="flex flex-wrap items-center justify-center gap-6 text-sm text-[#475569]" aria-label="ফুটার লিংক">
+        <nav class="flex flex-wrap items-center justify-center gap-6 text-sm sm:text-base text-[#475569]" aria-label="ফুটার লিংক">
           <a href="#about" data-i18n="navAbout" class="hover:text-[#0F5132] transition-colors whitespace-nowrap">পরিচিতি</a>
           <a href="#skills" data-i18n="navSkills" class="hover:text-[#0F5132] transition-colors whitespace-nowrap">দক্ষতা</a>
           <a href="#projects" data-i18n="navProjects" class="hover:text-[#0F5132] transition-colors whitespace-nowrap">ব্যাংকিং প্রজেক্ট</a>
@@ -879,7 +917,7 @@
         <div
           class="sticky top-0 bg-white/95 backdrop-blur-sm border-b border-slate-200 px-6 py-4 flex items-center justify-between gap-4"
         >
-          <span id="project-modal-kicker" class="text-xs font-semibold text-[#0F5132]"></span>
+          <span id="project-modal-kicker" class="text-sm font-semibold text-[#0F5132]"></span>
           <button
             type="button"
             data-close-modal="project-modal"
@@ -895,22 +933,22 @@
         <div class="p-6 sm:p-8 space-y-6">
           <div>
             <h3 id="project-modal-title" class="text-2xl font-bold text-[#1E293B] leading-[1.35]"></h3>
-            <p id="project-modal-tech" class="text-xs font-mono text-slate-500 mt-2"></p>
+            <p id="project-modal-tech" class="text-sm font-mono text-slate-500 mt-2"></p>
           </div>
 
-          <div class="space-y-4 text-[15px] leading-[1.8] text-[#475569]">
+          <div class="space-y-4 text-base sm:text-[1.0625rem] leading-[1.82] text-[#475569]">
             <div class="bg-[#FAFAFA] border border-slate-200 rounded-xl p-5">
-              <h4 id="project-modal-problem-heading" class="text-sm font-bold text-[#1E293B] mb-1.5">সমস্যার পটভূমি</h4>
+              <h4 id="project-modal-problem-heading" class="text-base font-bold text-[#1E293B] mb-1.5">সমস্যার পটভূমি</h4>
               <p id="project-modal-problem"></p>
             </div>
 
             <div class="bg-[#FAFAFA] border border-slate-200 rounded-xl p-5">
-              <h4 id="project-modal-solution-heading" class="text-sm font-bold text-[#1E293B] mb-1.5">কারিগরি সমাধান</h4>
+              <h4 id="project-modal-solution-heading" class="text-base font-bold text-[#1E293B] mb-1.5">কারিগরি সমাধান</h4>
               <p id="project-modal-solution"></p>
             </div>
 
             <div class="bg-[#E8F5E9]/70 border border-[#0F5132]/15 rounded-xl p-5">
-              <h4 id="project-modal-impact-heading" class="text-sm font-bold text-[#0F5132] mb-1.5">কার্যকারিতা ও ফলাফল</h4>
+              <h4 id="project-modal-impact-heading" class="text-base font-bold text-[#0F5132] mb-1.5">কার্যকারিতা ও ফলাফল</h4>
               <p id="project-modal-impact" class="text-[#1E293B]"></p>
             </div>
           </div>
@@ -920,7 +958,7 @@
               type="button"
               data-close-modal="project-modal"
               data-i18n="modalClose"
-              class="px-5 py-2.5 text-sm font-semibold text-white bg-[#0F5132] hover:bg-[#146C43] rounded-lg transition-colors"
+              class="px-5 py-2.5 text-sm sm:text-base font-semibold text-white bg-[#0F5132] hover:bg-[#146C43] rounded-lg transition-colors"
             >
               বন্ধ করুন
             </button>
@@ -944,13 +982,13 @@
         <div
           class="sticky top-0 bg-white/95 backdrop-blur-sm border-b border-slate-200 px-6 py-4 flex items-center justify-between gap-4"
         >
-          <div id="journal-modal-meta" class="text-xs text-slate-500 flex items-center gap-2 flex-wrap"></div>
+          <div id="journal-modal-meta" class="text-sm text-slate-500 flex items-center gap-2 flex-wrap"></div>
           <div class="flex items-center gap-2 shrink-0">
             <button
               id="journal-modal-print-btn"
               type="button"
               data-i18n="downloadPdf"
-              class="px-3 py-1.5 text-xs font-semibold text-[#0F5132] bg-[#E8F5E9] hover:bg-[#d7eed9] rounded-lg transition-colors whitespace-nowrap"
+              class="px-3.5 py-1.5 text-sm font-semibold text-[#0F5132] bg-[#E8F5E9] hover:bg-[#d7eed9] rounded-lg transition-colors whitespace-nowrap"
             >
               PDF ডাউনলোড
             </button>
@@ -980,23 +1018,23 @@
                   class="w-full h-full object-cover object-top"
                 />
               </span>
-              <p class="text-sm text-[#475569]" data-i18n-html="journalAuthorLine">
+              <p class="text-sm sm:text-base text-[#475569]" data-i18n-html="journalAuthorLine">
                 লেখক: <span class="font-semibold text-[#1E293B]">বরুণ মল্লিক</span> · কর্মকর্তা, বাংলাদেশ কৃষি ব্যাংক, বৈঠাকাটা শাখা
               </p>
             </div>
           </header>
 
-          <div id="journal-modal-body" class="space-y-5 text-[16px] text-[#334155] leading-[1.85]"></div>
+          <div id="journal-modal-body" class="space-y-5 text-base sm:text-[1.08rem] text-[#334155] leading-[1.88]"></div>
 
           <footer class="pt-6 border-t border-slate-200 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-            <span class="text-xs text-slate-500" data-i18n="journalFooterNote">
+            <span class="text-sm text-slate-500" data-i18n="journalFooterNote">
               গবেষণাপত্র ও মতামত — ব্যক্তিগত একাডেমিক প্রকাশনা
             </span>
             <button
               type="button"
               data-close-modal="journal-modal"
               data-i18n="finishReading"
-              class="px-5 py-2.5 text-sm font-semibold text-white bg-[#0F5132] hover:bg-[#146C43] rounded-lg transition-colors self-start sm:self-auto"
+              class="px-5 py-2.5 text-sm sm:text-base font-semibold text-white bg-[#0F5132] hover:bg-[#146C43] rounded-lg transition-colors self-start sm:self-auto"
             >
               পড়া শেষ করুন
             </button>
@@ -1637,10 +1675,10 @@
                         ${skill.icon}
                       </svg>
                     </div>
-                    <h3 class="text-lg font-bold text-[#1E293B] leading-[1.4] mb-2">${copy.title}</h3>
-                    <p class="text-[15px] text-[#475569] leading-[1.75]">${copy.desc}</p>
+                    <h3 class="text-lg sm:text-xl font-bold text-[#1E293B] leading-[1.4] mb-2">${copy.title}</h3>
+                    <p class="text-base text-[#475569] leading-[1.78]">${copy.desc}</p>
                   </div>
-                  <div class="mt-5 pt-4 border-t border-slate-200/80 text-xs font-mono text-slate-500">
+                  <div class="mt-5 pt-4 border-t border-slate-200/80 text-sm font-mono text-slate-500">
                     ${skill.tech}
                   </div>
                 </article>
@@ -1661,21 +1699,21 @@
               return `
                 <article class="bg-white border border-slate-200 rounded-2xl p-6 sm:p-7 flex flex-col justify-between transition-all duration-150 hover:border-[#0F5132]/40 hover:shadow-sm">
                   <div>
-                    <div class="flex items-center gap-2 text-xs text-slate-500 mb-3">
+                    <div class="flex items-center gap-2 text-sm text-slate-500 mb-3">
                       <span class="font-semibold text-[#0F5132]">${copy.categoryLabel}</span>
                       <span aria-hidden="true">·</span>
                       <span class="tabular-nums">${copy.year}</span>
                     </div>
                     <h3 class="text-xl font-bold text-[#1E293B] leading-[1.4] mb-3">${copy.title}</h3>
-                    <p class="text-[15px] text-[#475569] leading-[1.75]">${copy.summary}</p>
+                    <p class="text-base text-[#475569] leading-[1.78]">${copy.summary}</p>
                   </div>
 
                   <div class="mt-6 pt-4 border-t border-slate-100 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                    <span class="text-xs font-mono text-slate-500">${project.tech}</span>
+                    <span class="text-sm font-mono text-slate-500">${project.tech}</span>
                     <button
                       type="button"
                       data-project-id="${project.id}"
-                      class="open-project-btn inline-flex items-center gap-1.5 text-sm font-semibold text-[#0F5132] hover:text-[#146C43] transition-colors whitespace-nowrap shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0F5132] rounded"
+                      class="open-project-btn inline-flex items-center gap-1.5 text-base font-semibold text-[#0F5132] hover:text-[#146C43] transition-colors whitespace-nowrap shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0F5132] rounded"
                     >
                       ${t.viewDetails}
                       <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -1703,7 +1741,7 @@
               return `
                 <article class="py-7 sm:py-8 flex flex-col lg:flex-row lg:items-center justify-between gap-6">
                   <div class="max-w-3xl">
-                    <div class="flex flex-wrap items-center gap-2 text-xs text-slate-500 mb-2.5">
+                    <div class="flex flex-wrap items-center gap-2 text-sm text-slate-500 mb-2.5">
                       <span class="tabular-nums">${copy.date}</span>
                       <span aria-hidden="true">·</span>
                       <span class="font-semibold text-[#0F5132]">${copy.topic}</span>
@@ -1719,21 +1757,21 @@
                         ${copy.title}
                       </button>
                     </h3>
-                    <p class="text-[15px] text-[#475569] leading-[1.75] line-clamp-2">${copy.abstract}</p>
+                    <p class="text-base text-[#475569] leading-[1.78] line-clamp-2">${copy.abstract}</p>
                   </div>
 
                   <div class="flex flex-wrap items-center gap-3 shrink-0">
                     <button
                       type="button"
                       data-journal-id="${article.id}"
-                      class="open-journal-btn inline-flex items-center gap-2 px-4 py-2 text-sm font-semibold text-white bg-[#0F5132] hover:bg-[#146C43] rounded-lg transition-colors whitespace-nowrap shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0F5132] focus-visible:ring-offset-2"
+                      class="open-journal-btn inline-flex items-center gap-2 px-4 py-2 text-sm sm:text-base font-semibold text-white bg-[#0F5132] hover:bg-[#146C43] rounded-lg transition-colors whitespace-nowrap shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0F5132] focus-visible:ring-offset-2"
                     >
                       ${t.readFull}
                     </button>
                     <button
                       type="button"
                       data-pdf-journal-id="${article.id}"
-                      class="download-pdf-btn inline-flex items-center gap-1.5 px-4 py-2 text-sm font-semibold text-[#1E293B] bg-white border border-slate-300 hover:border-[#0F5132] hover:text-[#0F5132] rounded-lg transition-colors whitespace-nowrap shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0F5132] focus-visible:ring-offset-2"
+                      class="download-pdf-btn inline-flex items-center gap-1.5 px-4 py-2 text-sm sm:text-base font-semibold text-[#1E293B] bg-white border border-slate-300 hover:border-[#0F5132] hover:text-[#0F5132] rounded-lg transition-colors whitespace-nowrap shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0F5132] focus-visible:ring-offset-2"
                     >
                       <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
